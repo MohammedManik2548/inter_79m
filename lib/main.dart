@@ -9,6 +9,8 @@ import 'package:code_test/tests/fourth_test.dart';
 import 'package:code_test/tests/second_test.dart';
 import 'package:code_test/tests/third_test.dart';
 
+import 'bloc/second_test_bloc.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SLInitializer.init(GetIt.instance);
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => UserBloc()),
+        BlocProvider(create: (_) => SecondTestBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

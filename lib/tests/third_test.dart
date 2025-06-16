@@ -2,64 +2,106 @@ import 'package:flutter/material.dart';
 import 'package:code_test/lang.dart';
 
 class ThirdTest extends StatefulWidget {
-  const ThirdTest._();
+    const ThirdTest._();
 
-  static Widget provideRoute() {
-    return const ThirdTest._();
-  }
+    static Widget provideRoute() {
+        return const ThirdTest._();
+    }
 
-  @override
-  State<ThirdTest> createState() => _ThirdTestState();
+    @override
+    State<ThirdTest> createState() => _ThirdTestState();
 }
 
 class _ThirdTestState extends State<ThirdTest> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(currentLanguage.translate("thirdTest")),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              Text(
-                currentLanguage.translate("thirdTestIntroduction"),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(currentLanguage.translate("getSizeBeforeBuild")),
+    final GlobalKey _textKey = GlobalKey();
+
+    void _getSizeBeforeBuild() {
+        final textStyle = Theme.of(context).textTheme.bodyMedium ?? const TextStyle(fontSize: 14);
+
+        final TextPainter textPainter = TextPainter(
+            text: TextSpan(text: reallyLongLoremIpsum, style: textStyle),
+            maxLines: null,
+            textDirection: TextDirection.ltr,
+        )..layout(maxWidth: MediaQuery.of(context).size.width - 48);
+
+        final Size size = textPainter.size;
+        _showSizeDialog("Before Build", size);
+    }
+
+    void _getSizeAfterBuild() {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+            final RenderBox? box = _textKey.currentContext?.findRenderObject() as RenderBox?;
+            if (box != null) {
+                final Size size = box.size;
+                _showSizeDialog("After Build", size);
+            }
+        });
+    }
+
+    void _showSizeDialog(String title, Size size) {
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                title: Text("$title Size"),
+                content: Text("Width: ${size.width.toStringAsFixed(2)}\nHeight: ${size.height.toStringAsFixed(2)}"),
+                actions: [
+                    TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text("OK"),
                     ),
-                    const SizedBox(width: 16),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(currentLanguage.translate("getSizeAfterBuild")),
+                ],
+            ),
+        );
+    }
+
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+                title: Text(currentLanguage.translate("thirdTest")),
+            ),
+            body: Center(
+                child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                        children: [
+                            Text(
+                                currentLanguage.translate("thirdTestIntroduction"),
+                                textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 16),
+                            SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                    children: [
+                                        ElevatedButton(
+                                            onPressed: _getSizeBeforeBuild,
+                                            child: Text(currentLanguage.translate("getSizeBeforeBuild")),
+                                        ),
+                                        const SizedBox(width: 16),
+                                        ElevatedButton(
+                                            onPressed: _getSizeAfterBuild,
+                                            child: Text(currentLanguage.translate("getSizeAfterBuild")),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                            const SizedBox(height: 16),
+                            Expanded(
+                                child: SingleChildScrollView(
+                                    child: Text(
+                                        reallyLongLoremIpsum,
+                                        key: _textKey,
+                                        textAlign: TextAlign.center,
+                                    ),
+                                ),
+                            ),
+                        ],
                     ),
-                  ],
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Expanded(
-                child: SingleChildScrollView(
-                  child: Text(
-                    reallyLongLoremIpsum,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+            ),
+        );
+    }
 }
 
 const reallyLongLoremIpsum =
