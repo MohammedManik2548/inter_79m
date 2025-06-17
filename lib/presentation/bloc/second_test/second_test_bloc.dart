@@ -1,8 +1,7 @@
-
 import 'dart:async';
 import 'dart:math';
-import 'package:code_test/bloc/second_test_event.dart';
-import 'package:code_test/bloc/second_test_state.dart';
+import 'package:code_test/presentation/bloc/second_test/second_test_event.dart';
+import 'package:code_test/presentation/bloc/second_test/second_test_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:code_test/models/second_test_model.dart';
 import 'package:equatable/equatable.dart';

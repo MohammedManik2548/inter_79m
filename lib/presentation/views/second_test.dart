@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:code_test/lang.dart';
-import 'package:code_test/bloc/second_test_bloc.dart';
-import 'package:code_test/bloc/second_test_event.dart';
-import 'package:code_test/bloc/second_test_state.dart';
+import 'package:code_test/localization/lang.dart';
+
+import '../bloc/second_test/second_test_bloc.dart';
+import '../bloc/second_test/second_test_event.dart';
+import '../bloc/second_test/second_test_state.dart';
 
 class SecondTest extends StatefulWidget {
   const SecondTest._();

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:code_test/core.dart';
+import 'package:code_test/core/core.dart';
 import 'package:code_test/models/user.dart';
 import 'package:injectable/injectable.dart';
 import 'package:json_annotation/json_annotation.dart';

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../models/second_test_model.dart';
+import '../../../models/second_test_model.dart';
 
 enum SecondTestStatus { initial, loading, success, failure, loadingMore }
 

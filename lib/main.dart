@@ -1,15 +1,14 @@
+import 'package:code_test/presentation/bloc/second_test/second_test_bloc.dart';
+import 'package:code_test/presentation/bloc/user/user_bloc.dart';
+import 'package:code_test/presentation/views/first_test.dart';
+import 'package:code_test/presentation/views/fourth_test.dart';
+import 'package:code_test/presentation/views/second_test.dart';
+import 'package:code_test/presentation/views/third_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:code_test/bloc/user_bloc.dart';
-import 'package:code_test/lang.dart';
-import 'package:code_test/sl_initializer.dart';
-import 'package:code_test/tests/first_test.dart';
-import 'package:code_test/tests/fourth_test.dart';
-import 'package:code_test/tests/second_test.dart';
-import 'package:code_test/tests/third_test.dart';
-
-import 'bloc/second_test_bloc.dart';
+import 'package:code_test/localization/lang.dart';
+import 'core/sl_initializer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

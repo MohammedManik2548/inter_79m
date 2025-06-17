@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:code_test/bloc/first_test_bloc.dart';
-import 'package:code_test/bloc/user_bloc.dart';
-import 'package:code_test/lang.dart';
+import 'package:code_test/localization/lang.dart';
 import 'package:code_test/models/first_test_model.dart';
+
+import '../bloc/first_test/first_test_bloc.dart';
+import '../bloc/user/user_bloc.dart';
 
 
 class FirstTest extends StatefulWidget {

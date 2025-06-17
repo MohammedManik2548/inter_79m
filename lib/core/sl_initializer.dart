@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get_it/get_it.dart';
-import 'package:code_test/sl_initializer.config.dart';
+import 'package:code_test/core/sl_initializer.config.dart';
 import 'package:injectable/injectable.dart';
 
 @InjectableInit(
